@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:detail="clr-namespace:xam.course.example1.Features.Detail;assembly=xam.course.example1"
+             x:DataType="detail:DetailPageViewModel"
+             x:Class="xam.course.example1.Features.Detail.DetailPage">
+    <ContentPage.Content>
+        <StackLayout
+            Margin="16,80"
+            >
+           <Entry
+               Text="{Binding Name}"
+               Placeholder="Name"
+               />
+           <Entry
+               Text="{Binding Surname}"
+               Placeholder="Surname"
+           />
+           <Button
+               Command="{Binding SaveCommand}"
+               Text="Save"
+               />
+           <Button
+               Command="{Binding CloseCommand}"
+               Text="Close"
+           />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
