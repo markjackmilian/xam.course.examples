@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:xam.course.example1"
+             xmlns:contacts="clr-namespace:xam.course.example1.Features.Contacts;assembly=xam.course.example1"
+             x:DataType="contacts:ContactsPageViewModel"
+             x:Class="xam.course.example1.Features.Contacts.ContactsPage">
+
+    <Grid
+        RowDefinitions="88,*" 
+        >
+        
+        <ContentView
+            BackgroundColor="Purple"
+            >
+            
+            <Label
+                Text="Contacts"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="0,44,0,0"
+                TextColor="White"
+                FontSize="Subtitle"
+                />
+            
+        </ContentView>
+        
+        <CollectionView
+            ItemsSource="{Binding Contacts}"
+            Grid.Row="1"
+            >
+            
+            <CollectionView.EmptyView>
+                <ActivityIndicator
+                    IsRunning="true"
+                    />                   
+            </CollectionView.EmptyView>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="contacts:Contact"
+                    >
+                    <Grid
+                        Padding="16,8"
+                        >
+                        <Frame>
+                               <Grid
+                                   ColumnSpacing="24"
+                                   ColumnDefinitions="Auto,*"
+                                   >
+                                   
+                                   <Image
+                                       WidthRequest="100"
+                                       Source="{Binding Avatar}"
+                                       />
+                                   
+                                   <StackLayout
+                                       Grid.Column="1"
+                                       >
+                                       <Label
+                                           Text="{Binding Name}"
+                                           />
+                                       
+                                       <Label
+                                           Text="{Binding Surname}"
+                                       />
+                                       
+                                   </StackLayout>
+                                   
+                               </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+            
+        </CollectionView>
+        
+        <Button
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Text="+"
+            BackgroundColor="Purple"
+            HeightRequest="60"
+            WidthRequest="60"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Margin="0,0,28,60"
+            CornerRadius="30"
+            TextColor="White"
+            FontSize="Title"
+            />
+        
+    </Grid>
+    
+  
+
+</ContentPage>
