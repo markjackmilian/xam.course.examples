@@ -31,9 +31,18 @@
             >
             
             <CollectionView.EmptyView>
-                <ActivityIndicator
-                    IsRunning="true"
-                    />                   
+                <ContentView 
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="50"
+                    HeightRequest="50">
+                    <ActivityIndicator
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        IsRunning="true"
+                    />         
+                </ContentView>
+                         
             </CollectionView.EmptyView>
             
             <CollectionView.ItemTemplate>
