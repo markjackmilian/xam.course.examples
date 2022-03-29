@@ -13,6 +13,7 @@ namespace xam.course.example1.Features.Contacts
     public class ContactsPageViewModel : ZeroBaseModel
     {
         public ICommand CreateCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
         
         private readonly IContactService _contactService;
 
@@ -23,6 +24,13 @@ namespace xam.course.example1.Features.Contacts
             {
                 this.Contacts.Add(contact);
             };
+
+            this.DeleteCommand = ZeroCommand<Contact>.On(this)
+                .WithExecute((contact, context) =>
+                {
+                    this.Contacts.Remove(contact);
+                })
+                .Build();
 
             this.CreateCommand = ZeroCommand
                 .On(this)

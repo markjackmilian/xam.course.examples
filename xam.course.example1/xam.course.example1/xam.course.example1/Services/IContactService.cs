@@ -34,62 +34,62 @@ namespace xam.course.example1.Services
                 {
                     Name = "Marco",
                     Surname = "milani",
-                    Avatar =  $"https://i.pravatar.cc/150?un=123"
+                    Avatar =  $"https://i.pravatar.cc/150"
                 },
                 new Contact
                 {
                     Name = "Franco",
                     Surname = "Franchi",
-                    Avatar =  $"https://i.pravatar.cc/150?un=124"
+                    Avatar =  $"https://i.pravatar.cc/150"
 
                 },
                 new Contact
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
-                    Avatar =  $"https://i.pravatar.cc/150?un=125"
+                    Avatar =  $"https://i.pravatar.cc/150"
                 },
                 new Contact
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
-                    Avatar =  $"https://i.pravatar.cc/150?un=126"
+                    Avatar =  $"https://i.pravatar.cc/150"
                 },
                 new Contact
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
-                    Avatar =  $"https://i.pravatar.cc/150?un=127"
+                    Avatar =  $"https://i.pravatar.cc/150"
                 },
                 new Contact
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
-                    Avatar =  $"https://i.pravatar.cc/150?un=128"
+                    Avatar =  $"https://i.pravatar.cc/150"
                 },
                 new Contact
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
-                    Avatar =  $"https://i.pravatar.cc/150?un=129"
+                    Avatar =  $"https://i.pravatar.cc/150"
                 },
                 new Contact
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
-                    Avatar =  $"https://i.pravatar.cc/150?un=130"
+                    Avatar =  $"https://i.pravatar.cc/150"
                 },
                 new Contact
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
-                    Avatar =  $"https://i.pravatar.cc/150?un=131"
+                    Avatar =  $"https://i.pravatar.cc/150"
                 },
                 new Contact
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
-                    Avatar =  $"https://i.pravatar.cc/150?un=132"
+                    Avatar =  $"https://i.pravatar.cc/150"
                 },
             };
 
