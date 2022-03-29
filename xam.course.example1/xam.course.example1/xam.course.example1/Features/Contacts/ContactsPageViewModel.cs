@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace xam.course.example1.Features.Contacts
     {
         public ICommand CreateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand PickContactCommand { get; set; }
         
         private readonly IContactService _contactService;
 
@@ -24,6 +26,10 @@ namespace xam.course.example1.Features.Contacts
             {
                 this.Contacts.Add(contact);
             };
+
+            this.PickContactCommand = ZeroCommand.On(this)
+                .WithExecute(InnerPickContact)
+                .Build();
 
             this.DeleteCommand = ZeroCommand<Contact>.On(this)
                 .WithExecute((contact, context) =>
@@ -38,7 +44,35 @@ namespace xam.course.example1.Features.Contacts
                 .Build();
         }
 
+        private async void InnerPickContact(object arg1, ZeroCommandContext arg2)
+        {
+            try
+            {
+                var contact = await Xamarin.Essentials.Contacts.PickContactAsync();
+
+                if(contact == null)
+                    return;
+
+
+                var mycontact = new Contact
+                {
+                    Name = contact.GivenName,
+                    Surname = contact.FamilyName,
+                    Avatar = "https://i.pravatar.cc/150"
+                };
+                
+                this.Contacts.Add(mycontact);
+            }
+            catch (Exception ex)
+            {
+                var t = ex;
+                // Handle exception here.
+            }
+        }
+
         public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
+
+        
 
         protected override async void PrepareModel(object data)
         {

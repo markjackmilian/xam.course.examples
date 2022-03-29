@@ -12,6 +12,7 @@
     <ItemGroup>
         <PackageReference Include="Xam.Zero.DryIoc.Sem" Version="0.5.0" />
         <PackageReference Include="Xam.Zero.Sem" Version="1.3.0" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     </ItemGroup>
 

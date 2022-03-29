@@ -14,13 +14,29 @@
         <ContentView
             BackgroundColor="Purple">
 
-            <Label
-                Text="Contacts"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Margin="0,44,0,0"
-                TextColor="White"
-                FontSize="Subtitle" />
+            <Grid ColumnDefinitions="*,Auto">
+                <Label
+                    Grid.ColumnSpan="2"
+                    Text="Contacts"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="0,44,0,0"
+                    TextColor="White"
+                    FontSize="Subtitle" />
+                
+                <Button
+                    BackgroundColor="Transparent"
+                    Command="{Binding PickContactCommand}"
+                    Margin="0,32,16,0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Grid.Column="1"
+                    Text="Pick"
+                    TextColor="White"
+                    />
+                
+            </Grid>
+          
 
         </ContentView>
 
