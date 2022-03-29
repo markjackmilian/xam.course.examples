@@ -53,15 +53,15 @@ namespace xam.course.example1.Features.Contacts
                 if(contact == null)
                     return;
 
-
                 var mycontact = new Contact
                 {
                     Name = contact.GivenName,
                     Surname = contact.FamilyName,
-                    Avatar = "https://i.pravatar.cc/150"
+                    Avatar = "https://i.pravatar.cc/150",
+                    FromContacts = true
                 };
                 
-                this.Contacts.Add(mycontact);
+                this.Contacts.Insert(0,mycontact);
             }
             catch (Exception ex)
             {

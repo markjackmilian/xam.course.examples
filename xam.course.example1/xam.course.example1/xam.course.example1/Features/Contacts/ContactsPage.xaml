@@ -4,9 +4,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:xam.course.example1"
              xmlns:contacts="clr-namespace:xam.course.example1.Features.Contacts;assembly=xam.course.example1"
+             xmlns:converters="clr-namespace:xam.course.example1.Converters;assembly=xam.course.example1"
              x:Name="Contacts"
              x:DataType="contacts:ContactsPageViewModel"
              x:Class="xam.course.example1.Features.Contacts.ContactsPage">
+    
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FromContactToColorConverter x:Key="FromContactToColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid
         RowDefinitions="88,*">
@@ -55,7 +63,6 @@
                         HorizontalOptions="Center"
                         IsRunning="true" />
                 </ContentView>
-
             </CollectionView.EmptyView>
 
             <CollectionView.ItemTemplate>
@@ -105,6 +112,7 @@
 
 
                                     <StackLayout
+                                        BackgroundColor="{Binding FromContacts, Converter={StaticResource FromContactToColorConverter}}"
                                         Grid.Column="1">
                                         <Label
                                             Text="{Binding Name}" />
