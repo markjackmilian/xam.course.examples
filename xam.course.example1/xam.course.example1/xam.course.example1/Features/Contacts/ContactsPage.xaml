@@ -93,21 +93,27 @@
                                     <Grid
                                         WidthRequest="100">
 
-                                        <Image>
-                                            <Image.Source>
-                                                <UriImageSource
-                                                    CachingEnabled="False"
-                                                    Uri="{Binding Avatar}" />
-                                            </Image.Source>
+                                        <Frame
+                                            IsClippedToBounds="True"
+                                            CornerRadius="50"
+                                            WidthRequest="100"
+                                            HeightRequest="100"
+                                            HasShadow="False"
+                                            Padding="0"
+                                            >
+                                            <Image
+                                                Aspect="AspectFill"
+                                                >
+                                                <Image.Source>
+                                                    <UriImageSource
+                                                        CachingEnabled="False"
+                                                        Uri="{Binding Avatar}" />
+                                                </Image.Source>
 
-                                        </Image>
-
-                                        <!-- <BoxView -->
-                                        <!--     HeightRequest="100" -->
-                                        <!--     WidthRequest="100" -->
-                                        <!--        CornerRadius="50" -->
-                                        <!--     BackgroundColor="Blue" -->
-                                        <!--     /> -->
+                                            </Image>
+                                        </Frame>
+                                           
+                                            
                                     </Grid>
 
 
