@@ -85,7 +85,10 @@
                                 </SwipeItemView>
                             </SwipeView.RightItems>
 
-                            <Frame>
+                            <Frame
+                                HasShadow="False"
+                                BackgroundColor="LightGray"
+                                >
                                 <Grid
                                     ColumnSpacing="24"
                                     ColumnDefinitions="Auto,*">
