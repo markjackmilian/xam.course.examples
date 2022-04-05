@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using xam.course.core.Models;
 using xam.course.example1.Features.Detail;
 using xam.course.example1.Services;
 using Xam.Zero.ViewModels;
@@ -31,7 +32,7 @@ namespace xam.course.example1.Features.Contacts
                 .WithExecute(InnerPickContact)
                 .Build();
 
-            this.DeleteCommand = ZeroCommand<Contact>.On(this)
+            this.DeleteCommand = ZeroCommand<ContactModel>.On(this)
                 .WithExecute((contact, context) =>
                 {
                     this.Contacts.Remove(contact);
@@ -53,15 +54,16 @@ namespace xam.course.example1.Features.Contacts
                 if(contact == null)
                     return;
 
-                var mycontact = new Contact
+                var mycontact = new ContactModel
                 {
                     Name = contact.GivenName,
                     Surname = contact.FamilyName,
                     Avatar = "https://i.pravatar.cc/150",
                     FromContacts = true
                 };
+
+                await this._contactService.AddContact(mycontact);
                 
-                this.Contacts.Insert(0,mycontact);
             }
             catch (Exception ex)
             {
@@ -70,7 +72,7 @@ namespace xam.course.example1.Features.Contacts
             }
         }
 
-        public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
+        public ObservableCollection<ContactModel> Contacts { get; set; } = new ObservableCollection<ContactModel>();
 
         
 

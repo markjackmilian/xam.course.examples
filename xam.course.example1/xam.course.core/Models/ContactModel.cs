@@ -1,7 +1,12 @@
-namespace xam.course.example1.Features.Contacts
+using SQLite;
+
+namespace xam.course.core.Models
 {
-    public class Contact
+    public class ContactModel
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Avatar { get; set; }

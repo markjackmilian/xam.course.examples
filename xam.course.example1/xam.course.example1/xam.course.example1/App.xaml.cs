@@ -1,5 +1,6 @@
 ﻿using System;
 using DryIoc;
+using xam.course.core;
 using xam.course.example1.Features.Contacts;
 using xam.course.example1.Services;
 using Xam.Zero;
@@ -23,7 +24,8 @@ namespace xam.course.example1
         {
             InitializeComponent();
             
-            Container.Register<IContactService,ContactService>(Reuse.Singleton);
+            Startup.Init(Container);
+            Container.Register<IContactService,RepositoryContactService>(Reuse.Singleton);
             ZeroApp.On(this)
                 .WithContainer(DryIocZeroContainer.Build(Container))
                 .StartWithPage<ContactsPage>();

@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using xam.course.core.Models;
 using xam.course.example1.Features.Contacts;
 using xam.course.example1.Services;
 using Xam.Zero.ViewModels;
@@ -29,10 +30,11 @@ namespace xam.course.example1.Features.Detail
 
         private void SaveContact()
         {
-            var res = new Contact
+            var res = new ContactModel
             {
                 Name = this.Name,
                 Surname = this.Surname,
+                Avatar = "https://i.pravatar.cc/150" 
             };
             this._contactService.AddContact(res);
             this.PopModal();

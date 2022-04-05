@@ -1,91 +1,118 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using xam.course.core.Models;
+using xam.course.core.Repositories;
 using xam.course.example1.Features.Contacts;
+using Xamarin.Essentials;
 
 namespace xam.course.example1.Services
 {
     public interface IContactService
     {
-        event EventHandler<Contact> OnContactAdded;
+        event EventHandler<ContactModel> OnContactAdded;
 
-        Task AddContact(Contact contact);
-        Task<IEnumerable<Contact>> GetContacts();
+        Task AddContact(ContactModel contact);
+        Task<IEnumerable<ContactModel>> GetContacts();
+    }
+
+    class RepositoryContactService : IContactService
+    {
+        private readonly IContactRepository _contactRepository;
+        public event EventHandler<ContactModel> OnContactAdded;
+
+        public RepositoryContactService(IContactRepository contactRepository)
+        {
+            this._contactRepository = contactRepository;
+        }
+
+        public async Task AddContact(ContactModel contact)
+        {
+            await this._contactRepository.AddOrUpdateContact(contact);
+            this.OnContactAdded?.Invoke(this, contact);
+        }
+
+        public async Task<IEnumerable<ContactModel>> GetContacts()
+        {
+            var res = await this._contactRepository.GetContacts();
+            return res.AsEnumerable();
+        }
     }
 
     class ContactService : IContactService
     {
-        public event EventHandler<Contact> OnContactAdded;
+        public event EventHandler<ContactModel> OnContactAdded;
 
-        public Task AddContact(Contact contact)
+        public Task AddContact(ContactModel contact)
         {
             // db stuff like
             this.OnContactAdded?.Invoke(this, contact);
             return Task.CompletedTask;
         }
 
-        public async Task<IEnumerable<Contact>> GetContacts()
+        public async Task<IEnumerable<ContactModel>> GetContacts()
         {
             await Task.Delay(2000);
             
-            var res = new List<Contact>()
+            var res = new List<ContactModel>()
             {
-                new Contact
+                new ContactModel
                 {
                     Name = "Marco",
                     Surname = "milani",
                     Avatar =  $"https://i.pravatar.cc/150"
                 },
-                new Contact
+                new ContactModel
                 {
                     Name = "Franco",
                     Surname = "Franchi",
                     Avatar =  $"https://i.pravatar.cc/150"
 
                 },
-                new Contact
+                new ContactModel
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
                     Avatar =  $"https://i.pravatar.cc/150"
                 },
-                new Contact
+                new ContactModel
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
                     Avatar =  $"https://i.pravatar.cc/150"
                 },
-                new Contact
+                new ContactModel
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
                     Avatar =  $"https://i.pravatar.cc/150"
                 },
-                new Contact
+                new ContactModel
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
                     Avatar =  $"https://i.pravatar.cc/150"
                 },
-                new Contact
+                new ContactModel
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
                     Avatar =  $"https://i.pravatar.cc/150"
                 },
-                new Contact
+                new ContactModel
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
                     Avatar =  $"https://i.pravatar.cc/150"
                 },
-                new Contact
+                new ContactModel
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",
                     Avatar =  $"https://i.pravatar.cc/150"
                 },
-                new Contact
+                new ContactModel
                 {
                     Name = "Ciccio",
                     Surname = "Ingrassia",

@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:xam.course.example1"
              xmlns:contacts="clr-namespace:xam.course.example1.Features.Contacts;assembly=xam.course.example1"
              xmlns:converters="clr-namespace:xam.course.example1.Converters;assembly=xam.course.example1"
+             xmlns:models="clr-namespace:xam.course.core.Models;assembly=xam.course.core"
              x:Name="Contacts"
              x:DataType="contacts:ContactsPageViewModel"
              x:Class="xam.course.example1.Features.Contacts.ContactsPage">
@@ -67,7 +68,7 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate
-                    x:DataType="contacts:Contact">
+                    x:DataType="models:ContactModel">
                     <Grid
                         Padding="16,8">
 
