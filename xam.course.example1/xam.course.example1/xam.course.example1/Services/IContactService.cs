@@ -15,12 +15,16 @@ namespace xam.course.example1.Services
 
         Task AddContact(ContactModel contact);
         Task<IEnumerable<ContactModel>> GetContacts();
+
+        Task Remove(ContactModel model);
+        event EventHandler<ContactModel> OnContactRemoved;
     }
 
     class RepositoryContactService : IContactService
     {
         private readonly IContactRepository _contactRepository;
         public event EventHandler<ContactModel> OnContactAdded;
+        public event EventHandler<ContactModel> OnContactRemoved;
 
         public RepositoryContactService(IContactRepository contactRepository)
         {
@@ -37,6 +41,12 @@ namespace xam.course.example1.Services
         {
             var res = await this._contactRepository.GetContacts();
             return res.AsEnumerable();
+        }
+
+        public async Task Remove(ContactModel model)
+        {
+            await this._contactRepository.RemoveContact(model);
+            this.OnContactRemoved?.Invoke(this, model);
         }
     }
 
@@ -122,5 +132,12 @@ namespace xam.course.example1.Services
 
             return res;
         }
+
+        public Task Remove(ContactModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public event EventHandler<ContactModel> OnContactRemoved;
     }
 }

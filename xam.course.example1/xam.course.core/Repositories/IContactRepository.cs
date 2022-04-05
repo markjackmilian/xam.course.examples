@@ -7,5 +7,7 @@ namespace xam.course.core.Repositories
     {
         Task<ContactModel[]> GetContacts();
         Task AddOrUpdateContact(ContactModel model);
+
+        Task RemoveContact(ContactModel model);
     }
 }

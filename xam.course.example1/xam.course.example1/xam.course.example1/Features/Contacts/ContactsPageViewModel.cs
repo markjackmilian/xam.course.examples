@@ -17,25 +17,27 @@ namespace xam.course.example1.Features.Contacts
         public ICommand CreateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand PickContactCommand { get; set; }
-        
+
         private readonly IContactService _contactService;
 
         public ContactsPageViewModel(IContactService contactService)
         {
             this._contactService = contactService;
-            this._contactService.OnContactAdded += (sender, contact) =>
-            {
-                this.Contacts.Add(contact);
-            };
+            this._contactService.OnContactAdded += (sender, contact) => { this.Contacts.Add(contact); };
+            this._contactService.OnContactRemoved += (sender, contact) => { this.Contacts.Remove(contact); };
 
             this.PickContactCommand = ZeroCommand.On(this)
                 .WithExecute(InnerPickContact)
                 .Build();
 
             this.DeleteCommand = ZeroCommand<ContactModel>.On(this)
-                .WithExecute((contact, context) =>
+                .WithExecute(async (contact, context) =>
                 {
-                    this.Contacts.Remove(contact);
+                    var res = await this.DisplayAlert("Attenzione", "Vuoi eleminare il contatto?", "Si", "No");
+
+                    if (!res) return;
+                    
+                    await this._contactService.Remove(contact);
                 })
                 .Build();
 
@@ -51,7 +53,7 @@ namespace xam.course.example1.Features.Contacts
             {
                 var contact = await Xamarin.Essentials.Contacts.PickContactAsync();
 
-                if(contact == null)
+                if (contact == null)
                     return;
 
                 var mycontact = new ContactModel
@@ -63,7 +65,6 @@ namespace xam.course.example1.Features.Contacts
                 };
 
                 await this._contactService.AddContact(mycontact);
-                
             }
             catch (Exception ex)
             {
@@ -74,7 +75,6 @@ namespace xam.course.example1.Features.Contacts
 
         public ObservableCollection<ContactModel> Contacts { get; set; } = new ObservableCollection<ContactModel>();
 
-        
 
         protected override async void PrepareModel(object data)
         {

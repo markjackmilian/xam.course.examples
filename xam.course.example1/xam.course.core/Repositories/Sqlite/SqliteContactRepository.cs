@@ -23,5 +23,10 @@ namespace xam.course.core.Repositories.Sqlite
         {
             return model.Id == 0 ? this._database.InsertAsync(model) : this._database.UpdateAsync(model);
         }
+
+        public Task RemoveContact(ContactModel model)
+        {
+            return this._database.DeleteAsync(model);
+        }
     }
 }

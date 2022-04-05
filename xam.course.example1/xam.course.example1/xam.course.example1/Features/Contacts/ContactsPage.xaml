@@ -122,6 +122,7 @@
 
 
                                     <StackLayout
+                                        VerticalOptions="Center"
                                         BackgroundColor="{Binding FromContacts, Converter={StaticResource FromContactToColorConverter}}"
                                         Grid.Column="1">
                                         <Label
