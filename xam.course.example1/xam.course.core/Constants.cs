@@ -6,7 +6,8 @@ namespace xam.course.core
     
     static class Constants
     {
-        public const string SqliteDatabaseFilename = "ExampleSQLite.db3";
+        const string SqliteDatabaseFilename = "ExampleSQLite.db3";
+        const string LiteDbDatabaseFilename = "ExampleLiteDb.db";
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode
@@ -22,6 +23,15 @@ namespace xam.course.core
             {
                 var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
                 return Path.Combine(basePath, SqliteDatabaseFilename);
+            }
+        }
+        
+        public static string LiteDbDatabasePath
+        {
+            get
+            {
+                var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                return Path.Combine(basePath, LiteDbDatabaseFilename);
             }
         }
     }
