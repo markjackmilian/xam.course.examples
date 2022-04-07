@@ -1,8 +1,13 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using mjm.nethelpers.Extensions;
 using xam.course.core.Models;
 using xam.course.example1.Services;
 using Xam.Zero.ViewModels;
 using Xam.Zero.ZCommand;
+using Xamarin.Essentials;
 
 namespace xam.course.example1.Features.Detail
 {
@@ -11,8 +16,9 @@ namespace xam.course.example1.Features.Detail
         private readonly IContactService _contactService;
         public ICommand CloseCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
-        
+
         public string Surname { get; set; }
+        public string Address { get; set; }
         public string Name { get; set; }
 
         public DetailPageViewModel(IContactService contactService)
@@ -31,19 +37,21 @@ namespace xam.course.example1.Features.Detail
                 .Build();
         }
 
-        private void SaveContact()
+        private async Task SaveContact()
         {
+            var locations = this.Address.IsNullOrEmpty() ? null : await Geocoding.GetLocationsAsync(this.Address);
+            var location = locations?.First();
+
             var res = new ContactModel
             {
                 Name = this.Name,
                 Surname = this.Surname,
-                Avatar = "https://i.pravatar.cc/150" 
+                Avatar = "https://i.pravatar.cc/150",
+                Address = this.Address,
+                Location = location
             };
-            this._contactService.AddContact(res);
-            this.PopModal();
+            await this._contactService.AddContact(res);
+            await this.PopModal();
         }
-
-      
     }
-
 }

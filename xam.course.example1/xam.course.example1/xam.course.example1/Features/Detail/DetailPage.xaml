@@ -17,6 +17,11 @@
                Text="{Binding Surname}"
                Placeholder="Surname"
            />
+           
+           <Entry
+               Text="{Binding Address}"
+               Placeholder="Address"
+           />
            <Button
                Command="{Binding SaveCommand}"
                Text="Save"
