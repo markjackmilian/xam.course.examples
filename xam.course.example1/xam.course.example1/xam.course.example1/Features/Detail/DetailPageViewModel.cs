@@ -1,6 +1,5 @@
 using System.Windows.Input;
 using xam.course.core.Models;
-using xam.course.example1.Features.Contacts;
 using xam.course.example1.Services;
 using Xam.Zero.ViewModels;
 using Xam.Zero.ZCommand;
@@ -10,12 +9,21 @@ namespace xam.course.example1.Features.Detail
     public class DetailPageViewModel : ZeroBaseModel
     {
         private readonly IContactService _contactService;
-        public ICommand CloseCommand { get; set; }
-        public ICommand SaveCommand { get; set; }
+        public ICommand ProvaCommand { get; set; }
+        public ICommand CloseCommand { get; private set; }
+        public ICommand SaveCommand { get; private set; }
+        
+        public string Surname { get; set; }
+        public string Name { get; set; }
 
         public DetailPageViewModel(IContactService contactService)
         {
             this._contactService = contactService;
+
+            this.ProvaCommand = ZeroCommand.On(this)
+                .WithExecute((o, context) => this.Name = "PIPPO")
+                .Build();
+            
             this.CloseCommand = ZeroCommand
                 .On(this)
                 .WithExecute((o, context) => this.PopModal())
@@ -40,28 +48,7 @@ namespace xam.course.example1.Features.Detail
             this.PopModal();
         }
 
-        private string _name;
-
-        public string Name
-        {
-            get => this._name;
-            set
-            {
-                this._name = value;
-                this.RaisePropertyChanged();
-            }
-        }
-
-        private string _surname;
-
-        public string Surname
-        {
-            get => this._surname;
-            set
-            {
-                this._surname = value;
-                this.RaisePropertyChanged();
-            }
-        }
+      
     }
+
 }

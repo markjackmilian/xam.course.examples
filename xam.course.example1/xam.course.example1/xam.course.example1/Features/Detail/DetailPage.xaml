@@ -25,6 +25,10 @@
                Command="{Binding CloseCommand}"
                Text="Close"
            />
+           <Button
+               Command="{Binding ProvaCommand}"
+               Text="PROVA"
+           />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
