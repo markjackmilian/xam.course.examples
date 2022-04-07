@@ -9,7 +9,6 @@ namespace xam.course.example1.Features.Detail
     public class DetailPageViewModel : ZeroBaseModel
     {
         private readonly IContactService _contactService;
-        public ICommand ProvaCommand { get; set; }
         public ICommand CloseCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
         
@@ -20,10 +19,6 @@ namespace xam.course.example1.Features.Detail
         {
             this._contactService = contactService;
 
-            this.ProvaCommand = ZeroCommand.On(this)
-                .WithExecute((o, context) => this.Name = "PIPPO")
-                .Build();
-            
             this.CloseCommand = ZeroCommand
                 .On(this)
                 .WithExecute((o, context) => this.PopModal())
