@@ -16,14 +16,30 @@ namespace xam.course.example1.Features.Detail
         private readonly IContactService _contactService;
         public ICommand CloseCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
+        public ICommand GetLocationCommand { get; private set; }
 
         public string Surname { get; set; }
         public string Address { get; set; }
         public string Name { get; set; }
 
+        public Location Location { get; set; }
+
         public DetailPageViewModel(IContactService contactService)
         {
             this._contactService = contactService;
+            
+            this.GetLocationCommand = ZeroCommand.On(this)
+                .WithCanExecute(() => this.Address.IsNullOrEmpty())
+                .WithAutoInvalidateWhenExecuting()
+                .WithExecute(async (o, context) =>
+                {
+                    var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                    var location = await Geolocation.GetLocationAsync(request);
+
+                    this.Location = location;
+                })
+                .Build();
+            
 
             this.CloseCommand = ZeroCommand
                 .On(this)
@@ -39,8 +55,17 @@ namespace xam.course.example1.Features.Detail
 
         private async Task SaveContact()
         {
-            var locations = this.Address.IsNullOrEmpty() ? null : await Geocoding.GetLocationsAsync(this.Address);
-            var location = locations?.First();
+            if (this.Location == null)
+            {
+                var locations = this.Address.IsNullOrEmpty() ? null : await Geocoding.GetLocationsAsync(this.Address);
+                this.Location = locations?.First();
+            }
+            else
+            {
+                var placeMark = await Geocoding.GetPlacemarksAsync(this.Location);
+                this.Address = placeMark.First().Locality;
+            }
+            
 
             var res = new ContactModel
             {
@@ -48,10 +73,18 @@ namespace xam.course.example1.Features.Detail
                 Surname = this.Surname,
                 Avatar = "https://i.pravatar.cc/150",
                 Address = this.Address,
-                Location = location
+                Location = this.Location
             };
             await this._contactService.AddContact(res);
             await this.PopModal();
+        }
+
+        protected override void PrepareModel(object data)
+        {
+            this.Location = null;
+            this.Name = null;
+            this.Surname = null;
+            this.Address = null;
         }
     }
 }

@@ -23,6 +23,10 @@
                Placeholder="Address"
            />
            <Button
+               Command="{Binding GetLocationCommand}"
+               Text="Get Location"
+           />
+           <Button
                Command="{Binding SaveCommand}"
                Text="Save"
                />
