@@ -6,6 +6,7 @@ using xam.course.example1.Services;
 using Xam.Zero;
 using Xam.Zero.DryIoc;
 using Xam.Zero.RGPopup;
+using Xam.Zero.ToolkitPopup;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -28,7 +29,8 @@ namespace xam.course.example1
             Startup.Init(Container);
             Container.Register<IContactService,RepositoryContactService>(Reuse.Singleton);
             ZeroApp.On(this)
-                .WithPopupNavigator(RGPopupNavigator.Build())
+                // .WithPopupNavigator(RGPopupNavigator.Build())
+                .WithPopupNavigator(ToolkitPopupNavigator.Build())
                 .WithContainer(DryIocZeroContainer.Build(Container))
                 .StartWithPage<ContactsPage>();
         }

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:detail="clr-namespace:xam.course.example1.Features.Detail;assembly=xam.course.example1"
-                 xmlns:pages="http://rotorgames.com"
-                 xmlns:markupExtensions="clr-namespace:Xam.Zero.MarkupExtensions;assembly=Xam.Zero"
-                 x:DataType="detail:DetailPageViewModel"
-                 BindingContext="{markupExtensions:ViewModelMarkup ViewModel={x:Type detail:DetailPageViewModel}}"
-                 x:Class="xam.course.example1.Features.Detail.DetailPage">
+<views:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:detail="clr-namespace:xam.course.example1.Features.Detail;assembly=xam.course.example1"
+       xmlns:pages="http://rotorgames.com"
+       xmlns:markupExtensions="clr-namespace:Xam.Zero.MarkupExtensions;assembly=Xam.Zero"
+       xmlns:views="http://xamarin.com/schemas/2020/toolkit"
+       x:DataType="detail:DetailPageViewModel"
+       BindingContext="{markupExtensions:ViewModelMarkup ViewModel={x:Type detail:DetailPageViewModel}}"
+       x:Class="xam.course.example1.Features.Detail.DetailPage">
 
     <Frame
         IsClippedToBounds="True"
@@ -58,4 +59,4 @@
         </StackLayout>
     </Frame>
 
-</pages:PopupPage>
+</views:Popup>
