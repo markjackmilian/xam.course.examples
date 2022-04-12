@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using mjm.nethelpers.Extensions;
 using xam.course.core.Models;
 using xam.course.example1.Features.Detail;
 using xam.course.example1.Services;
@@ -17,6 +19,8 @@ namespace xam.course.example1.Features.Contacts
         public ICommand CreateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand PickContactCommand { get; set; }
+
+        public bool IsBusy { get; set; }
 
         private readonly IContactService _contactService;
 
@@ -78,9 +82,19 @@ namespace xam.course.example1.Features.Contacts
 
         protected override async void PrepareModel(object data)
         {
-            var contacts = await this._contactService.GetContacts();
-            this.Contacts.Clear();
-            contacts.ForEach(contact => this.Contacts.Add(contact));
+            try
+            {
+                this.IsBusy = true;
+                await Task.Delay(3000);
+                var contacts = await this._contactService.GetContacts();
+                this.Contacts.Clear();
+                contacts.ForEach(contact => this.Contacts.Add(contact));
+            }
+            finally
+            {
+                this.IsBusy = false;
+            }
+            
         }
 
         // protected override void ReversePrepareModel(object data)

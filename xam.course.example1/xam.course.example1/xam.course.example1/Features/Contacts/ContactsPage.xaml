@@ -6,6 +6,7 @@
              xmlns:contacts="clr-namespace:xam.course.example1.Features.Contacts;assembly=xam.course.example1"
              xmlns:converters="clr-namespace:xam.course.example1.Converters;assembly=xam.course.example1"
              xmlns:models="clr-namespace:xam.course.core.Models;assembly=xam.course.core"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              x:Name="Contacts"
              x:DataType="contacts:ContactsPageViewModel"
              x:Class="xam.course.example1.Features.Contacts.ContactsPage">
@@ -54,16 +55,13 @@
             Grid.Row="1">
 
             <CollectionView.EmptyView>
-                <ContentView
+                <forms:AnimationView
+                    Animation="Resources.notfound.json"
+                    AnimationSource="EmbeddedResource"
+                    AutoPlay="True"
+                    RepeatMode="Infinite"
                     VerticalOptions="Center"
-                    HorizontalOptions="Center"
-                    WidthRequest="50"
-                    HeightRequest="50">
-                    <ActivityIndicator
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        IsRunning="true" />
-                </ContentView>
+                    HorizontalOptions="Center" />
             </CollectionView.EmptyView>
 
             <CollectionView.ItemTemplate>
@@ -160,6 +158,25 @@
             CornerRadius="30"
             TextColor="White"
             FontSize="Title" />
+        
+        
+        <ContentView
+            IsVisible="{Binding IsBusy}"
+            Grid.Row="1"
+            BackgroundColor="White"
+            >
+            <ContentView
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="50"
+                HeightRequest="50">
+                <ActivityIndicator
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    IsRunning="true" />
+            </ContentView>
+            
+        </ContentView>
 
     </Grid>
 

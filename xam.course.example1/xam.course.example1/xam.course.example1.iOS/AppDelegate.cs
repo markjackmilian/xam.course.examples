@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
+using Lottie.Forms.Platforms.Ios;
 using UIKit;
 
 namespace xam.course.example1.iOS
@@ -23,6 +24,8 @@ namespace xam.course.example1.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            
+            new AnimationViewRenderer();
 
             return base.FinishedLaunching(app, options);
         }
