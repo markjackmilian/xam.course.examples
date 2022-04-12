@@ -14,6 +14,7 @@ namespace xam.course.example1.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Rg.Plugins.Popup.Popup.Init(this);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

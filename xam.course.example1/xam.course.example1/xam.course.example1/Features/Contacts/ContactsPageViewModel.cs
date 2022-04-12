@@ -47,7 +47,7 @@ namespace xam.course.example1.Features.Contacts
 
             this.CreateCommand = ZeroCommand
                 .On(this)
-                .WithExecute((o, context) => this.PushModal<DetailPage>())
+                .WithExecute((o, context) => this.ShowPopup<DetailPage>())
                 .Build();
         }
 

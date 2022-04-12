@@ -11,7 +11,7 @@ using Xamarin.Essentials;
 
 namespace xam.course.example1.Features.Detail
 {
-    public class DetailPageViewModel : ZeroBaseModel
+    public class DetailPageViewModel : ZeroPopupBaseModel
     {
         private readonly IContactService _contactService;
         public ICommand CloseCommand { get; private set; }
@@ -43,7 +43,7 @@ namespace xam.course.example1.Features.Detail
 
             this.CloseCommand = ZeroCommand
                 .On(this)
-                .WithExecute((o, context) => this.PopModal())
+                // .WithExecute((o, context) => this.PopModal())
                 .Build();
 
             this.SaveCommand = ZeroCommand
@@ -76,7 +76,7 @@ namespace xam.course.example1.Features.Detail
                 Location = this.Location
             };
             await this._contactService.AddContact(res);
-            await this.PopModal();
+            // await this.PopModal();
         }
 
         protected override void PrepareModel(object data)
