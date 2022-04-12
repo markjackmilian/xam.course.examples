@@ -43,7 +43,7 @@ namespace xam.course.example1.Features.Detail
 
             this.CloseCommand = ZeroCommand
                 .On(this)
-                // .WithExecute((o, context) => this.PopModal())
+                .WithExecute((o, context) => this.DismissPopup())
                 .Build();
 
             this.SaveCommand = ZeroCommand
@@ -76,7 +76,7 @@ namespace xam.course.example1.Features.Detail
                 Location = this.Location
             };
             await this._contactService.AddContact(res);
-            // await this.PopModal();
+            await this.DismissPopup();
         }
 
         protected override void PrepareModel(object data)

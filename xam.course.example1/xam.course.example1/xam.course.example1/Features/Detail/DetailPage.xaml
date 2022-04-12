@@ -1,41 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:detail="clr-namespace:xam.course.example1.Features.Detail;assembly=xam.course.example1"
-             xmlns:pages="http://rotorgames.com"
-             xmlns:markupExtensions="clr-namespace:Xam.Zero.MarkupExtensions;assembly=Xam.Zero"
-             x:DataType="detail:DetailPageViewModel"
-             BindingContext="{markupExtensions:ViewModelMarkup ViewModel={x:Type detail:DetailPageViewModel}}"
-             x:Class="xam.course.example1.Features.Detail.DetailPage">
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:detail="clr-namespace:xam.course.example1.Features.Detail;assembly=xam.course.example1"
+                 xmlns:pages="http://rotorgames.com"
+                 xmlns:markupExtensions="clr-namespace:Xam.Zero.MarkupExtensions;assembly=Xam.Zero"
+                 x:DataType="detail:DetailPageViewModel"
+                 BindingContext="{markupExtensions:ViewModelMarkup ViewModel={x:Type detail:DetailPageViewModel}}"
+                 x:Class="xam.course.example1.Features.Detail.DetailPage">
+
+    <Frame
+        IsClippedToBounds="True"
+        Padding="0"
+        Margin="16,0"
+        VerticalOptions="Center"
+        >
         <StackLayout
-            Margin="16,80"
             >
-           <Entry
-               Text="{Binding Name}"
-               Placeholder="Name"
-               />
-           <Entry
-               Text="{Binding Surname}"
-               Placeholder="Surname"
-           />
-           
-           <Entry
-               Text="{Binding Address}"
-               Placeholder="Address"
-           />
-           <Button
-               Command="{Binding GetLocationCommand}"
-               Text="Get Location"
-           />
-           
-           <Button
-               Command="{Binding SaveCommand}"
-               Text="Save"
-               />
-           <Button
-               Command="{Binding CloseCommand}"
-               Text="Close"
-           />
+            
+            <ContentView
+                HeightRequest="50"
+                BackgroundColor="Purple"
+                >
+                
+                <Label Text="Add New Contact"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontAttributes="Bold"
+                       />
+            </ContentView>
+            
+            <Entry
+                Text="{Binding Name}"
+                Placeholder="Name" />
+            <Entry
+                Text="{Binding Surname}"
+                Placeholder="Surname" />
+
+            <Entry
+                Text="{Binding Address}"
+                Placeholder="Address" />
+            <Button
+                Command="{Binding GetLocationCommand}"
+                Text="Get Location" />
+
+            <Button
+                Command="{Binding SaveCommand}"
+                Text="Save" />
+            <Button   
+                CornerRadius="0"
+                BackgroundColor="Red"
+                Command="{Binding CloseCommand}"
+                Text="Close" 
+                TextColor="White"
+                />
         </StackLayout>
+    </Frame>
+
 </pages:PopupPage>
