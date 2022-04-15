@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="http://rotorgames.com"
+                 xmlns:markupExtensions="clr-namespace:Xam.Zero.MarkupExtensions;assembly=Xam.Zero"
+                 xmlns:chooseSize="clr-namespace:xam.course.example1.Features.ChooseSize;assembly=xam.course.example1"
+                 BindingContext="{markupExtensions:ViewModelMarkup ViewModel={x:Type chooseSize:ChooseSizeViewModel}}"
+                 x:DataType="chooseSize:ChooseSizeViewModel"
+                 x:Class="xam.course.example1.Features.ChooseSize.ChooseSizePage">
+
+    <Frame
+        VerticalOptions="Center"
+        Margin="16"
+        >
+        <StackLayout
+            RadioButtonGroup.GroupName="Sizes"
+            RadioButtonGroup.SelectedValue="{Binding Value}"
+            >
+            <Label Text="Make your choice."
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" />
+            
+            <RadioButton Content="S" Value="S"/>
+            <RadioButton Content="M" Value="M"/>
+            <RadioButton Content="L" Value="L"/>
+            <RadioButton Content="XL" Value="XL"/>
+            
+            <Button 
+                Command="{Binding SelectedCommand}"
+                TextColor="White"
+                BackgroundColor="Purple"
+                Text="Confirm"/>
+            
+        </StackLayout>
+    </Frame>
+
+
+</pages:PopupPage>

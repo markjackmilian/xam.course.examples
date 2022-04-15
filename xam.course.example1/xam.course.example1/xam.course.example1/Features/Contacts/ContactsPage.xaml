@@ -25,6 +25,18 @@
             BackgroundColor="Purple">
 
             <Grid ColumnDefinitions="*,Auto">
+                
+                <Button
+                    BackgroundColor="Transparent"
+                    Command="{Binding ChooseSizeCommand}"
+                    Margin="16,32,0,0"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    Text="Sizes"
+                    TextColor="White"
+                />
+                
                 <Label
                     Grid.ColumnSpan="2"
                     Text="Contacts"

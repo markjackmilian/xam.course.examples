@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using mjm.nethelpers.Extensions;
 using xam.course.core.Models;
+using xam.course.example1.Features.ChooseSize;
 using xam.course.example1.Features.Detail;
 using xam.course.example1.Services;
 using Xam.Zero.ViewModels;
@@ -19,6 +20,7 @@ namespace xam.course.example1.Features.Contacts
         public ICommand CreateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand PickContactCommand { get; set; }
+        public ICommand ChooseSizeCommand { get; set; }
 
         public bool IsBusy { get; set; }
 
@@ -30,6 +32,15 @@ namespace xam.course.example1.Features.Contacts
             this._contactService.OnContactAdded += (sender, contact) => { this.Contacts.Add(contact); };
             this._contactService.OnContactRemoved += (sender, contact) => { this.Contacts.Remove(contact); };
 
+
+            this.ChooseSizeCommand = ZeroCommand.On(this)
+                .WithExecute(async (o, context) =>
+                {
+                    var res = await this.ShowPopup<ChooseSizePage, string>();
+                    await this.DisplayAlert("Hai scelto:", res, "ok");
+                })
+                .Build();
+            
             this.PickContactCommand = ZeroCommand.On(this)
                 .WithExecute(InnerPickContact)
                 .Build();
