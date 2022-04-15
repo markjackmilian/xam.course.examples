@@ -9,29 +9,55 @@
                  x:DataType="chooseSize:ChooseSizeViewModel"
                  x:Class="xam.course.example1.Features.ChooseSize.ChooseSizePage">
 
+    <pages:PopupPage.Resources>
+        <Style TargetType="RadioButton">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CheckedStates">
+                        <VisualState x:Name="Checked">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor"
+                                        Value="Green" />
+                                <Setter Property="Opacity"
+                                        Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor"
+                                        Value="Red" />
+                                <Setter Property="Opacity"
+                                        Value="0.5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </pages:PopupPage.Resources>
+
+
     <Frame
         VerticalOptions="Center"
-        Margin="16"
-        >
+        Margin="16">
         <StackLayout
             RadioButtonGroup.GroupName="Sizes"
-            RadioButtonGroup.SelectedValue="{Binding Value}"
-            >
+            RadioButtonGroup.SelectedValue="{Binding Value}">
             <Label Text="Make your choice."
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand" />
-            
-            <RadioButton Content="S" Value="S"/>
-            <RadioButton Content="M" Value="M"/>
-            <RadioButton Content="L" Value="L"/>
-            <RadioButton Content="XL" Value="XL"/>
-            
-            <Button 
+
+            <RadioButton Content="S" Value="S" />
+            <RadioButton Content="M" Value="M" />
+            <RadioButton Content="L" Value="L" />
+            <RadioButton Content="XL" Value="XL" />
+
+            <Button
                 Command="{Binding SelectedCommand}"
                 TextColor="White"
                 BackgroundColor="Purple"
-                Text="Confirm"/>
-            
+                Text="Confirm" />
+
         </StackLayout>
     </Frame>
 
