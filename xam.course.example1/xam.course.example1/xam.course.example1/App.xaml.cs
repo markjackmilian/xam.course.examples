@@ -15,6 +15,9 @@ namespace xam.course.example1
 {
     public partial class App : Application
     {
+        
+        public static Action Close { get; set; }
+        
         public static readonly Container Container = new Container(rules =>
         {
             rules = rules.WithDefaultIfAlreadyRegistered(IfAlreadyRegistered.Keep);
