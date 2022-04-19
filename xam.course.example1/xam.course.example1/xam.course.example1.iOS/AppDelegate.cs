@@ -25,6 +25,11 @@ namespace xam.course.example1.iOS
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+
+            App.Close = () =>
+            {
+                // todo
+            };
             
             var _ = new AnimationViewRenderer();
 
