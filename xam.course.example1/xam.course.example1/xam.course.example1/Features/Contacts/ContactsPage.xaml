@@ -7,6 +7,7 @@
              xmlns:converters="clr-namespace:xam.course.example1.Converters;assembly=xam.course.example1"
              xmlns:models="clr-namespace:xam.course.core.Models;assembly=xam.course.core"
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             xmlns:effects="clr-namespace:xam.course.example1.Effects;assembly=xam.course.example1"
              x:Name="Contacts"
              x:DataType="contacts:ContactsPageViewModel"
              x:Class="xam.course.example1.Features.Contacts.ContactsPage">
@@ -169,7 +170,13 @@
             Margin="0,0,28,60"
             CornerRadius="30"
             TextColor="White"
-            FontSize="Title" />
+            FontSize="Title" >
+            
+            <Button.Effects>
+                <effects:BackgroundColorEffect/>
+            </Button.Effects>
+            
+        </Button>
         
         
         <ContentView

@@ -1,4 +1,6 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace xam.course.example1.Features.Contacts
 {
