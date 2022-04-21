@@ -9,6 +9,12 @@ using Xamarin.Essentials;
 
 namespace xam.course.example1.Services
 {
+
+    public interface IDataReader
+    {
+        event EventHandler<int> DataReceived;
+    }
+    
     public interface IContactService
     {
         event EventHandler<ContactModel> OnContactAdded;

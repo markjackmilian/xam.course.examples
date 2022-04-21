@@ -88,6 +88,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="Effects\BackgroundColorEffect.cs" />
+        <Compile Include="IosDatReader.cs" />
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
         <None Include="Entitlements.plist" />

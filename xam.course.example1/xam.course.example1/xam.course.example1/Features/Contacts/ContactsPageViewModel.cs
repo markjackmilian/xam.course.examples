@@ -11,6 +11,7 @@ using xam.course.example1.Features.Detail;
 using xam.course.example1.Services;
 using Xam.Zero.ViewModels;
 using Xam.Zero.ZCommand;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace xam.course.example1.Features.Contacts
@@ -23,15 +24,34 @@ namespace xam.course.example1.Features.Contacts
         public ICommand ChooseSizeCommand { get; set; }
 
         public bool IsBusy { get; set; }
+        public int PlatformValue { get; set; }
 
         private readonly IContactService _contactService;
+        private readonly IDataReader _dataReader;
 
-        public ContactsPageViewModel(IContactService contactService)
+        public ContactsPageViewModel(IContactService contactService, IDataReader dataReader)
         {
             this._contactService = contactService;
+            this._dataReader = dataReader;
             this._contactService.OnContactAdded += (sender, contact) => { this.Contacts.Add(contact); };
             this._contactService.OnContactRemoved += (sender, contact) => { this.Contacts.Remove(contact); };
 
+
+            dataReader.DataReceived += (sender, i) =>
+            {
+                this.PlatformValue = i;
+            };
+            
+            
+            // MessagingCenter.Instance.Subscribe<object,int>(this,"dataRead", (o,i) =>
+            // {
+            //     this.PlatformValue = i;
+            // });
+            
+            // App.OnDataReceived += (sender, i) =>
+            // {
+            //     this.PlatformValue = i;
+            // };
 
             this.ChooseSizeCommand = ZeroCommand.On(this)
                 .WithExecute(async (o, context) =>
@@ -89,6 +109,8 @@ namespace xam.course.example1.Features.Contacts
         }
 
         public ObservableCollection<ContactModel> Contacts { get; set; } = new ObservableCollection<ContactModel>();
+
+        
 
 
         protected override async void PrepareModel(object data)

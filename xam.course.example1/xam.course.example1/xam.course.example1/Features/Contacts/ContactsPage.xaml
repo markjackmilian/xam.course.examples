@@ -178,6 +178,14 @@
             
         </Button>
         
+        <Label
+            Grid.Row="1"
+            VerticalOptions="End"
+            HorizontalOptions="Start"
+            Margin="72"
+            Text="{Binding PlatformValue}"
+            />
+        
         
         <ContentView
             IsVisible="{Binding IsBusy}"

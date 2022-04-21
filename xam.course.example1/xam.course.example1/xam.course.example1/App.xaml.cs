@@ -17,6 +17,11 @@ namespace xam.course.example1
     {
         
         public static Action Close { get; set; }
+
+        public static object Sender = new object();
+            
+
+        public static event EventHandler<int> OnDataReceived;
         
         public static readonly Container Container = new Container(rules =>
         {
