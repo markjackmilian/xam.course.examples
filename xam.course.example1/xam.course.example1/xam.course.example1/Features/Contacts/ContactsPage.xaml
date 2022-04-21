@@ -11,11 +11,163 @@
              x:Name="Contacts"
              x:DataType="contacts:ContactsPageViewModel"
              x:Class="xam.course.example1.Features.Contacts.ContactsPage">
-    
-    
+
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:FromContactToColorConverter x:Key="FromContactToColorConverter"/>
+            <converters:FromContactToColorConverter x:Key="FromContactToColorConverter" />
+
+            <DataTemplate
+                x:Key="marcoTemplate"
+                x:DataType="models:ContactModel">
+                <Grid
+                    BackgroundColor="Goldenrod"
+                    Padding="16,8">
+
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItemView
+                                Command="{Binding Source={x:Reference Contacts}, Path=BindingContext.DeleteCommand}"
+                                CommandParameter="{Binding .}">
+                                <Label
+                                    Margin="16,0"
+                                    VerticalOptions="Center"
+                                    TextColor="Red"
+                                    Text="Delete" />
+                            </SwipeItemView>
+                        </SwipeView.RightItems>
+
+                        <Frame
+                            HasShadow="False"
+                            BackgroundColor="LightGray">
+                            <Grid
+                                ColumnSpacing="24"
+                                ColumnDefinitions="Auto,*">
+
+                                <Grid
+                                    WidthRequest="100">
+
+                                    <Frame
+                                        IsClippedToBounds="True"
+                                        CornerRadius="50"
+                                        WidthRequest="100"
+                                        HeightRequest="100"
+                                        HasShadow="False"
+                                        Padding="0">
+                                        <Image
+                                            Aspect="AspectFill">
+                                            <Image.Source>
+                                                <UriImageSource
+                                                    CachingEnabled="False"
+                                                    Uri="{Binding Avatar}" />
+                                            </Image.Source>
+
+                                        </Image>
+                                    </Frame>
+
+
+                                </Grid>
+
+
+                                <StackLayout
+                                    VerticalOptions="Center"
+                                    BackgroundColor="{Binding FromContacts, Converter={StaticResource FromContactToColorConverter}}"
+                                    Grid.Column="1">
+                                    <Label
+                                        Text="{Binding Name}" />
+
+                                    <Label
+                                        Text="{Binding Surname}" />
+
+                                </StackLayout>
+
+                            </Grid>
+                        </Frame>
+
+                    </SwipeView>
+
+
+                </Grid>
+            </DataTemplate>
+            
+            <DataTemplate
+                x:Key="otherTemplate"
+                x:DataType="models:ContactModel">
+                <Grid
+                    Padding="16,8">
+
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItemView
+                                Command="{Binding Source={x:Reference Contacts}, Path=BindingContext.DeleteCommand}"
+                                CommandParameter="{Binding .}">
+                                <Label
+                                    Margin="16,0"
+                                    VerticalOptions="Center"
+                                    TextColor="Red"
+                                    Text="Delete" />
+                            </SwipeItemView>
+                        </SwipeView.RightItems>
+
+                        <Frame
+                            HasShadow="False"
+                            BackgroundColor="LightGray">
+                            <Grid
+                                ColumnSpacing="24"
+                                ColumnDefinitions="Auto,*">
+
+                                <Grid
+                                    WidthRequest="100">
+
+                                    <Frame
+                                        IsClippedToBounds="True"
+                                        CornerRadius="50"
+                                        WidthRequest="100"
+                                        HeightRequest="100"
+                                        HasShadow="False"
+                                        Padding="0">
+                                        <Image
+                                            Aspect="AspectFill">
+                                            <Image.Source>
+                                                <UriImageSource
+                                                    CachingEnabled="False"
+                                                    Uri="{Binding Avatar}" />
+                                            </Image.Source>
+
+                                        </Image>
+                                    </Frame>
+
+
+                                </Grid>
+
+
+                                <StackLayout
+                                    VerticalOptions="Center"
+                                    BackgroundColor="{Binding FromContacts, Converter={StaticResource FromContactToColorConverter}}"
+                                    Grid.Column="1">
+                                    <Label
+                                        Text="{Binding Name}" />
+
+                                    <Label
+                                        Text="{Binding Surname}" />
+
+                                </StackLayout>
+
+                            </Grid>
+                        </Frame>
+
+                    </SwipeView>
+
+
+                </Grid>
+            </DataTemplate>
+
+            <contacts:MarcoTemplateSelector
+                x:Key="MarcoTemplateSelector"
+                MarcoTemplate="{StaticResource marcoTemplate}"
+                OtherTemplate="{StaticResource otherTemplate}"
+                />
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -26,7 +178,7 @@
             BackgroundColor="Purple">
 
             <Grid ColumnDefinitions="*,Auto">
-                
+
                 <Button
                     BackgroundColor="Transparent"
                     Command="{Binding ChooseSizeCommand}"
@@ -35,9 +187,8 @@
                     VerticalOptions="Center"
                     Grid.Column="0"
                     Text="Sizes"
-                    TextColor="White"
-                />
-                
+                    TextColor="White" />
+
                 <Label
                     Grid.ColumnSpan="2"
                     Text="Contacts"
@@ -46,7 +197,7 @@
                     Margin="0,44,0,0"
                     TextColor="White"
                     FontSize="Subtitle" />
-                
+
                 <Button
                     BackgroundColor="Transparent"
                     Command="{Binding PickContactCommand}"
@@ -55,15 +206,15 @@
                     VerticalOptions="Center"
                     Grid.Column="1"
                     Text="Pick"
-                    TextColor="White"
-                    />
-                
+                    TextColor="White" />
+
             </Grid>
-          
+
 
         </ContentView>
 
         <CollectionView
+            ItemTemplate="{StaticResource MarcoTemplateSelector}"
             ItemsSource="{Binding Contacts}"
             Grid.Row="1">
 
@@ -76,84 +227,6 @@
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
             </CollectionView.EmptyView>
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate
-                    x:DataType="models:ContactModel">
-                    <Grid
-                        Padding="16,8">
-
-                        <SwipeView>
-                            <SwipeView.RightItems>
-                                <SwipeItemView
-                                    Command="{Binding Source={x:Reference Contacts}, Path=BindingContext.DeleteCommand}"
-                                    CommandParameter="{Binding .}"
-                                    >
-                                    <Label
-                                        Margin="16,0"
-                                        VerticalOptions="Center"
-                                        TextColor="Red"
-                                        Text="Delete" />
-                                </SwipeItemView>
-                            </SwipeView.RightItems>
-
-                            <Frame
-                                HasShadow="False"
-                                BackgroundColor="LightGray"
-                                >
-                                <Grid
-                                    ColumnSpacing="24"
-                                    ColumnDefinitions="Auto,*">
-
-                                    <Grid
-                                        WidthRequest="100">
-
-                                        <Frame
-                                            IsClippedToBounds="True"
-                                            CornerRadius="50"
-                                            WidthRequest="100"
-                                            HeightRequest="100"
-                                            HasShadow="False"
-                                            Padding="0"
-                                            >
-                                            <Image
-                                                Aspect="AspectFill"
-                                                >
-                                                <Image.Source>
-                                                    <UriImageSource
-                                                        CachingEnabled="False"
-                                                        Uri="{Binding Avatar}" />
-                                                </Image.Source>
-
-                                            </Image>
-                                        </Frame>
-                                           
-                                            
-                                    </Grid>
-
-
-                                    <StackLayout
-                                        VerticalOptions="Center"
-                                        BackgroundColor="{Binding FromContacts, Converter={StaticResource FromContactToColorConverter}}"
-                                        Grid.Column="1">
-                                        <Label
-                                            Text="{Binding Name}" />
-
-                                        <Label
-                                            Text="{Binding Surname}" />
-
-                                    </StackLayout>
-
-                                </Grid>
-                            </Frame>
-
-                        </SwipeView>
-
-
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-
 
         </CollectionView>
 
@@ -170,28 +243,26 @@
             Margin="0,0,28,60"
             CornerRadius="30"
             TextColor="White"
-            FontSize="Title" >
-            
+            FontSize="Title">
+
             <Button.Effects>
-                <effects:BackgroundColorEffect/>
+                <effects:BackgroundColorEffect />
             </Button.Effects>
-            
+
         </Button>
-        
+
         <Label
             Grid.Row="1"
             VerticalOptions="End"
             HorizontalOptions="Start"
             Margin="72"
-            Text="{Binding PlatformValue}"
-            />
-        
-        
+            Text="{Binding PlatformValue}" />
+
+
         <ContentView
             IsVisible="{Binding IsBusy}"
             Grid.Row="1"
-            BackgroundColor="White"
-            >
+            BackgroundColor="White">
             <ContentView
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
@@ -202,7 +273,7 @@
                     HorizontalOptions="Center"
                     IsRunning="true" />
             </ContentView>
-            
+
         </ContentView>
 
     </Grid>
