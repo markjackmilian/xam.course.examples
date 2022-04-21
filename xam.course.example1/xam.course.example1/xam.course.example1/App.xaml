@@ -4,5 +4,9 @@
              x:Class="xam.course.example1.App">
     <Application.Resources>
 
+        <!-- <Style TargetType="Label"> -->
+        <!--     <Setter Property="FontFamily" Value="customFont"/> -->
+        <!-- </Style> -->
+        
     </Application.Resources>
 </Application>

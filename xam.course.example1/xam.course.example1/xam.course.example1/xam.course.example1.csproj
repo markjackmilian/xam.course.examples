@@ -39,5 +39,7 @@
       <EmbeddedResource Include="Resources\notfound.json" />
       <None Remove="Resources\Samantha.ttf" />
       <EmbeddedResource Include="Resources\Samantha.ttf" />
+      <None Remove="Resources\icomoon.ttf" />
+      <EmbeddedResource Include="Resources\icomoon.ttf" />
     </ItemGroup>
 </Project>

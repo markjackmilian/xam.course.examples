@@ -186,7 +186,9 @@
                     HorizontalOptions="Start"
                     VerticalOptions="Center"
                     Grid.Column="0"
-                    Text="Sizes"
+                    Text="{x:Static local:IcoMoonIcons.Sizes}"
+                    FontFamily="icomoon"
+                    FontSize="32"
                     TextColor="White" />
 
                 <Label
@@ -206,7 +208,9 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     Grid.Column="1"
-                    Text="Pick"
+                    Text="{x:Static local:IcoMoonIcons.Contacts }"
+                    FontFamily="icomoon"
+                    FontSize="32"
                     TextColor="White" />
 
             </Grid>
@@ -258,6 +262,16 @@
             HorizontalOptions="Start"
             Margin="72"
             Text="{Binding PlatformValue}" />
+        
+        <!-- <Label -->
+        <!--     Grid.Row="1" -->
+        <!--     VerticalOptions="Center" -->
+        <!--     HorizontalOptions="Center" -->
+        <!--     Text="{x:Static local:IcoMoonIcons.Contacts}" -->
+        <!--     FontFamily="icomoon" -->
+        <!--     FontSize="400" -->
+        <!--     TextColor="Aqua" -->
+        <!--     /> -->
 
 
         <ContentView

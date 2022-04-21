@@ -9,6 +9,7 @@ using Xam.Zero.RGPopup;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+[assembly: ExportFont("icomoon.ttf", Alias = "icomoon")]
 [assembly: ExportFont("Samantha.ttf", Alias = "customFont")]
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
