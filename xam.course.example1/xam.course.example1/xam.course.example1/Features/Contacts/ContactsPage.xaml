@@ -191,12 +191,13 @@
 
                 <Label
                     Grid.ColumnSpan="2"
+                    FontFamily="customFont"
                     Text="Contacts"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     Margin="0,44,0,0"
                     TextColor="White"
-                    FontSize="Subtitle" />
+                    FontSize="40" />
 
                 <Button
                     BackgroundColor="Transparent"

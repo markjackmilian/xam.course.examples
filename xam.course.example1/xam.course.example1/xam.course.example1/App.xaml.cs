@@ -9,6 +9,7 @@ using Xam.Zero.RGPopup;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+[assembly: ExportFont("Samantha.ttf", Alias = "customFont")]
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace xam.course.example1

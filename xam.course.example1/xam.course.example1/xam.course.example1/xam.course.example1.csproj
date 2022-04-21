@@ -37,5 +37,7 @@
     <ItemGroup>
       <None Remove="Resources\99436-404-page.json" />
       <EmbeddedResource Include="Resources\notfound.json" />
+      <None Remove="Resources\Samantha.ttf" />
+      <EmbeddedResource Include="Resources\Samantha.ttf" />
     </ItemGroup>
 </Project>

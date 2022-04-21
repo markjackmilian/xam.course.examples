@@ -5,6 +5,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using DryIoc;
+using xam.course.example1.Services;
 
 namespace xam.course.example1.Droid
 {
@@ -21,6 +23,9 @@ namespace xam.course.example1.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            
+            App.Container.Register<IDataReader,DroidDataReader>(Reuse.Singleton);
+            
             LoadApplication(new App());
 
             App.Close = this.FinishAffinity;
