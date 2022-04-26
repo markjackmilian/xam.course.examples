@@ -54,6 +54,7 @@
     <ItemGroup>
         <Compile Include="DroidDataReader.cs" />
         <Compile Include="Effects\BackgroundColorEffect.cs" />
+        <Compile Include="Factories\DroidNativeViewFactory.cs" />
         <Compile Include="MainActivity.cs" />
         <Compile Include="Resources\Resource.Designer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

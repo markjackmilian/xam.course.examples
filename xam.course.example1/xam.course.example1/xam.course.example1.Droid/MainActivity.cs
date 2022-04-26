@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using DryIoc;
+using xam.course.example1.Droid.Factories;
 using xam.course.example1.Features.Contacts;
 using xam.course.example1.Services;
 using Xamarin.Forms.Platform.Android;
@@ -27,9 +28,11 @@ namespace xam.course.example1.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             
             App.Container.Register<IDataReader,DroidDataReader>(Reuse.Singleton);
+            App.Container.Register<INativeViewFactory,DroidNativeViewFactory>();
+
             
             LoadApplication(new App());
-            this.AddNativeView();
+            //this.AddNativeView();
 
             App.Close = this.FinishAffinity;
         }

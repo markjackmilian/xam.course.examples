@@ -7,6 +7,7 @@ using Foundation;
 using Lottie.Forms.Platforms.Ios;
 using UIKit;
 using xam.course.example1.Features.Contacts;
+using xam.course.example1.iOS.Factories;
 using xam.course.example1.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -34,11 +35,11 @@ namespace xam.course.example1.iOS
             global::Xamarin.Forms.Forms.Init();
             
             App.Container.Register<IDataReader,IosDatReader>(Reuse.Singleton);
-
+            App.Container.Register<INativeViewFactory,IosNativeViewFactory>();
             
             LoadApplication(new App());
 
-            this.AddNativeView();
+            //this.AddNativeView();
 
             App.Close = () =>
             {
@@ -46,8 +47,6 @@ namespace xam.course.example1.iOS
             };
             
             var _ = new AnimationViewRenderer();
-            
-
             // this.StartReadData();
 
             return base.FinishedLaunching(app, options);
