@@ -9,6 +9,7 @@ using UIKit;
 using xam.course.example1.Features.Contacts;
 using xam.course.example1.Services;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace xam.course.example1.iOS
 {
@@ -37,6 +38,8 @@ namespace xam.course.example1.iOS
             
             LoadApplication(new App());
 
+            this.AddNativeView();
+
             App.Close = () =>
             {
                 // todo
@@ -48,6 +51,21 @@ namespace xam.course.example1.iOS
             // this.StartReadData();
 
             return base.FinishedLaunching(app, options);
+        }
+
+        private void AddNativeView()
+        {
+            var page = App.Container.Resolve<ContactsPage>();
+            page.AddNativeControl = view =>
+            {
+                var native = new UISegmentedControl("Uno", "Due");
+                native.ValueChanged += (sender, args) =>
+                {
+                    page.DisplayAlert("Selezione", $"hai selezionato {native.SelectedSegment}", "ok");
+                };
+
+                view.Content = native.ToView();
+            };
         }
 
         private void StartReadData()

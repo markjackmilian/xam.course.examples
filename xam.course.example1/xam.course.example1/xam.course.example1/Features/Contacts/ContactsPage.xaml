@@ -256,12 +256,21 @@
 
         </Button>
 
-        <Label
+        <!-- <Label -->
+        <!--     Grid.Row="1" -->
+        <!--     VerticalOptions="End" -->
+        <!--     HorizontalOptions="Start" -->
+        <!--     Margin="72" -->
+        <!--     Text="{Binding PlatformValue}" /> -->
+            
+        <ContentView
+            x:Name="nativeContent"
             Grid.Row="1"
             VerticalOptions="End"
             HorizontalOptions="Start"
-            Margin="72"
-            Text="{Binding PlatformValue}" />
+            Margin="72">
+           
+        </ContentView>
         
         <!-- <Label -->
         <!--     Grid.Row="1" -->

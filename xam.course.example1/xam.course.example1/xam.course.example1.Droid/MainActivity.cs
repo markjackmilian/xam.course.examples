@@ -6,7 +6,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using DryIoc;
+using xam.course.example1.Features.Contacts;
 using xam.course.example1.Services;
+using Xamarin.Forms.Platform.Android;
 
 namespace xam.course.example1.Droid
 {
@@ -27,10 +29,26 @@ namespace xam.course.example1.Droid
             App.Container.Register<IDataReader,DroidDataReader>(Reuse.Singleton);
             
             LoadApplication(new App());
+            this.AddNativeView();
 
             App.Close = this.FinishAffinity;
         }
-        
+
+        private void AddNativeView()
+        {
+            var page = App.Container.Resolve<ContactsPage>();
+            page.AddNativeControl = view =>
+            {
+                var native = new ToggleButton(Application.Context);
+                native.CheckedChange += (sender, args) =>
+                {
+                    page.DisplayAlert("Selezione", $"Il toggle è {native.Checked}", "ok");
+                };
+
+                view.Content = native.ToView();
+            };
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
