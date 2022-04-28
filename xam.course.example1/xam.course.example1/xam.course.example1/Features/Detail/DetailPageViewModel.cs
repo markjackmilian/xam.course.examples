@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using mjm.nethelpers.Extensions;
+using Serilog;
 using xam.course.core.Models;
 using xam.course.example1.Services;
 using Xam.Zero.ViewModels;
@@ -15,6 +16,7 @@ namespace xam.course.example1.Features.Detail
     {
         private readonly IContactService _contactService;
         private readonly ErrorManager _errorManager;
+        private readonly ILogger _logger;
         public ICommand CloseCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
         public ICommand GetLocationCommand { get; private set; }
@@ -25,10 +27,11 @@ namespace xam.course.example1.Features.Detail
 
         public Location Location { get; set; }
 
-        public DetailPageViewModel(IContactService contactService, ErrorManager errorManager)
+        public DetailPageViewModel(IContactService contactService, ErrorManager errorManager, ILogger logger)
         {
             this._contactService = contactService;
             this._errorManager = errorManager;
+            this._logger = logger;
 
             this.GetLocationCommand = ZeroCommand.On(this)
                 .WithCanExecute(() => this.Address.IsNullOrEmpty())
@@ -58,6 +61,8 @@ namespace xam.course.example1.Features.Detail
 
         private async Task SaveContact()
         {
+            throw new Exception("Errore di prova");
+            
             if (this.Location == null)
             {
                 var locations = this.Address.IsNullOrEmpty() ? null : await Geocoding.GetLocationsAsync(this.Address);
@@ -84,6 +89,8 @@ namespace xam.course.example1.Features.Detail
 
         protected override void PrepareModel(object data)
         {
+            this._logger.Information("DetailPage opened");
+            
             this.Location = null;
             this.Name = null;
             this.Surname = null;

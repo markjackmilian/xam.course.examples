@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using mjm.nethelpers.Extensions;
+using Serilog;
 using xam.course.core.Models;
 using xam.course.example1.Features.ChooseSize;
 using xam.course.example1.Features.Detail;
@@ -28,11 +29,13 @@ namespace xam.course.example1.Features.Contacts
 
         private readonly IContactService _contactService;
         private readonly IDataReader _dataReader;
+        private readonly ILogger _logger;
 
-        public ContactsPageViewModel(IContactService contactService, IDataReader dataReader)
+        public ContactsPageViewModel(IContactService contactService, IDataReader dataReader, ILogger logger)
         {
             this._contactService = contactService;
             this._dataReader = dataReader;
+            this._logger = logger;
             this._contactService.OnContactAdded += (sender, contact) => { this.Contacts.Add(contact); };
             this._contactService.OnContactRemoved += (sender, contact) => { this.Contacts.Remove(contact); };
 
@@ -115,6 +118,7 @@ namespace xam.course.example1.Features.Contacts
 
         protected override async void PrepareModel(object data)
         {
+            this._logger.Information("ContactPage opened");
             try
             {
                 this.IsBusy = true;
