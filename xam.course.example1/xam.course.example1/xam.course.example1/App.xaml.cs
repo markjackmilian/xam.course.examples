@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DryIoc;
+using LiveSharp.Runtime;
 using xam.course.core;
 using xam.course.example1.Features.Contacts;
 using xam.course.example1.Services;
 using Xam.Zero;
 using Xam.Zero.DryIoc;
 using Xam.Zero.RGPopup;
+using Xam.Zero.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -37,10 +41,25 @@ namespace xam.course.example1
             
             Startup.Init(Container);
             Container.Register<IContactService,RepositoryContactService>(Reuse.Singleton);
+
+            var errorManager = new ErrorManager(ErrorAction);
+            Container.UseInstance(errorManager);
+            
             ZeroApp.On(this)
                 .WithPopupNavigator(RGPopupNavigator.Build())
                 .WithContainer(DryIocZeroContainer.Build(Container))
                 .StartWithPage<ContactsPage>();
+        }
+
+        private Task ErrorAction(Exception ex)
+        {
+            // Crashes.TrackError(ex);
+            // Container.Resolve<ILogger>().Error(ex, ex.Message);
+
+            return MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                this.MainPage.DisplayAlert("Attenzione", "Si è verificato un errore", "ok");
+            }); 
         }
 
         protected override void OnStart()

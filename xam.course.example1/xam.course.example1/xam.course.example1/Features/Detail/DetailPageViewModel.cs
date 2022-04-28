@@ -14,6 +14,7 @@ namespace xam.course.example1.Features.Detail
     public class DetailPageViewModel : ZeroPopupBaseModel
     {
         private readonly IContactService _contactService;
+        private readonly ErrorManager _errorManager;
         public ICommand CloseCommand { get; private set; }
         public ICommand SaveCommand { get; private set; }
         public ICommand GetLocationCommand { get; private set; }
@@ -24,10 +25,11 @@ namespace xam.course.example1.Features.Detail
 
         public Location Location { get; set; }
 
-        public DetailPageViewModel(IContactService contactService)
+        public DetailPageViewModel(IContactService contactService, ErrorManager errorManager)
         {
             this._contactService = contactService;
-            
+            this._errorManager = errorManager;
+
             this.GetLocationCommand = ZeroCommand.On(this)
                 .WithCanExecute(() => this.Address.IsNullOrEmpty())
                 .WithAutoInvalidateWhenExecuting()
@@ -48,6 +50,7 @@ namespace xam.course.example1.Features.Detail
 
             this.SaveCommand = ZeroCommand
                 .On(this)
+                .WithErrorHandler(exception => this._errorManager.AddError(exception))
                 .WithExecute((o, context) => this.SaveContact())
                 .WithCanExecute(() => !string.IsNullOrEmpty(this.Name) && !string.IsNullOrEmpty(this.Surname))
                 .Build();
