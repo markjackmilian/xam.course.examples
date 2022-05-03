@@ -12,7 +12,7 @@
     <ItemGroup>
         <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
         <PackageReference Include="DryIoc.dll" Version="4.0.0" />
-        <PackageReference Include="LiveSharp" Version="2.0.28" />
+        <PackageReference Include="LiveSharp" Version="2.0.35" />
         <PackageReference Include="mjm.nethelpers" Version="1.6.0" />
         <PackageReference Include="nightly.serilog.xamarin" Version="0.2.0" />
         <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
