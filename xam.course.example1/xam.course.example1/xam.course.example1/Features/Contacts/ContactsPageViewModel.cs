@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using mjm.nethelpers.Extensions;
 using Serilog;
 using xam.course.core.Models;
@@ -61,6 +63,11 @@ namespace xam.course.example1.Features.Contacts
                 {
                     var res = await this.ShowPopup<ChooseSizePage, string>();
                     await this.DisplayAlert("Hai scelto:", res, "ok");
+                    Analytics.TrackEvent("Size",new Dictionary<string, string>
+                    {
+                        {"size",res}
+                    });
+                    Analytics.TrackEvent("Prova");
                 })
                 .Build();
             
