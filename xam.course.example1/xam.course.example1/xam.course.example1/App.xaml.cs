@@ -6,6 +6,7 @@ using LiveSharp.Runtime;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
 using nightly.serilog.xamarin;
 using Serilog;
 using xam.course.core;
@@ -99,8 +100,10 @@ namespace xam.course.example1
         protected override void OnStart()
         {
             // Handle when your app starts
+            
+            Distribute.UpdateTrack = UpdateTrack.Private;
             AppCenter.Start("android=376d0f47-3ffb-41ae-8e1e-288479e12de2;ios=026e8c1e-27a3-4ec1-b8a7-9bd81903342f;",
-                typeof(Analytics), typeof(Crashes));
+                typeof(Analytics), typeof(Crashes), typeof(Distribute));
             
             // Crashes.ShouldAwaitUserConfirmation = () =>
             // {
