@@ -88,7 +88,13 @@ namespace xam.course.example1.Features.Contacts
 
             this.CreateCommand = ZeroCommand
                 .On(this)
-                .WithExecute((o, context) => this.ShowPopup<DetailPage>())
+                .WithExecute((o, context) =>
+                {
+                    // if(Device.Idiom == TargetIdiom.Tablet)
+                    //     return this.Push<TabletDetailPage>(); 
+                    
+                    return this.ShowPopup<DetailPage>();
+                })
                 .Build();
         }
 
