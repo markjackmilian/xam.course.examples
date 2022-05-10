@@ -8,6 +8,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Distribute;
 using nightly.serilog.xamarin;
+using OneSignalSDK.Xamarin;
 using Serilog;
 using xam.course.core;
 using xam.course.example1.Features.Contacts;
@@ -57,6 +58,9 @@ namespace xam.course.example1
                 .WithPopupNavigator(RGPopupNavigator.Build())
                 .WithContainer(DryIocZeroContainer.Build(Container))
                 .StartWithPage<ContactsPage>();
+            
+            OneSignal.Default.Initialize("721bd68d-f293-40af-ad46-b529cfa5f7e5");
+            OneSignal.Default.PromptForPushNotificationsWithUserResponse();
         }
 
         private void InitLogger()

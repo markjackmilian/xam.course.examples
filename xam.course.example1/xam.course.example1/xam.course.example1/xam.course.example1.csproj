@@ -18,6 +18,7 @@
         <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.5.1" />
         <PackageReference Include="mjm.nethelpers" Version="1.6.0" />
         <PackageReference Include="nightly.serilog.xamarin" Version="0.2.0" />
+        <PackageReference Include="OneSignalSDK.Xamarin" Version="4.0.0" />
         <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
         <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
         <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />

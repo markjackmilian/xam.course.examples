@@ -14,7 +14,6 @@
         <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-        <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
         <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
         <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     </PropertyGroup>
@@ -52,6 +51,7 @@
         <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.1" />
         <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.1" />
         <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.5.1" />
+        <PackageReference Include="OneSignalSDK.Xamarin" Version="4.0.0" />
         <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
         <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.6" />
         <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
@@ -78,7 +78,7 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\xam.course.example1\xam.course.example1.csproj">
-            <Project>{45483556-35C3-45A2-B92D-A0B2123D0B5E}</Project>
+            <Project>{AF401061-0D0D-4858-AB1F-F008FCB21844}</Project>
             <Name>xam.course.example1</Name>
         </ProjectReference>
     </ItemGroup>
