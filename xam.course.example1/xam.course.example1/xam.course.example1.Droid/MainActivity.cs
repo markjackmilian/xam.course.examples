@@ -33,7 +33,7 @@ namespace xam.course.example1.Droid
             
             LoadApplication(new App());
             //this.AddNativeView();
-
+            
             App.Close = this.FinishAffinity;
         }
 
