@@ -9,6 +9,7 @@ using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Distribute;
 using nightly.serilog.xamarin;
 using OneSignalSDK.Xamarin;
+using OneSignalSDK.Xamarin.Core;
 using Serilog;
 using xam.course.core;
 using xam.course.example1.Features.Contacts;
@@ -61,6 +62,27 @@ namespace xam.course.example1
             
             OneSignal.Default.Initialize("721bd68d-f293-40af-ad46-b529cfa5f7e5");
             OneSignal.Default.PromptForPushNotificationsWithUserResponse();
+            OneSignal.Default.NotificationOpened += DefaultOnNotificationOpened;
+
+            OneSignal.Default.
+
+            // var tags = await OneSignal.Default.GetTags();
+            //
+            // OneSignal.Default.SendTag("UserId", "123456");
+            // OneSignal.Default.SendTag("Reparto", "abc");
+            //
+            // OneSignal.Default.DeleteTag("UserId");
+            
+            
+
+
+        }
+
+        private async void DefaultOnNotificationOpened(NotificationOpenedResult result)
+        {
+            var newsId = result.notification.additionalData["NewsId"].ToString();
+
+            await this.MainPage.DisplayAlert("Nuova News", $"Leggi la news {newsId}!", "OK");
         }
 
         private void InitLogger()
