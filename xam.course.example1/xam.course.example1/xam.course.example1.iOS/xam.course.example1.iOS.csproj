@@ -51,6 +51,7 @@
         <MtouchDebug>true</MtouchDebug>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <MtouchLink>SdkOnly</MtouchLink>
+        <CodesignProvision>Xam Course Dev</CodesignProvision>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
         <DebugType>none</DebugType>
@@ -73,10 +74,10 @@
         <ConsolePause>False</ConsolePause>
         <MtouchArch>ARM64</MtouchArch>
         <BuildIpa>True</BuildIpa>
-        <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+        <CodesignProvision>Xam Course Ad Hoc</CodesignProvision>
         <CodesignKey>iPhone Distribution</CodesignKey>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-        <MtouchLink>SdkOnly</MtouchLink>
+        <MtouchLink>None</MtouchLink>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
         <DebugType>none</DebugType>
