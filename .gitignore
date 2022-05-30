@@ -349,3 +349,9 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 xam.course.example1/.idea
+xam.course.example1/RealTime/Course.Http/.idea
+xam.course.example1/RealTime/Course.RealTime/.idea
+xam.course.example1/RealTime/Course.SignalR/.idea
+xam.course.example1/RealTime/.DS_Store
+xam.course.example1/.DS_Store
+.DS_Store

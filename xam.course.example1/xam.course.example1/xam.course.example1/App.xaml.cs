@@ -64,7 +64,6 @@ namespace xam.course.example1
             OneSignal.Default.PromptForPushNotificationsWithUserResponse();
             OneSignal.Default.NotificationOpened += DefaultOnNotificationOpened;
 
-            OneSignal.Default.
 
             // var tags = await OneSignal.Default.GetTags();
             //

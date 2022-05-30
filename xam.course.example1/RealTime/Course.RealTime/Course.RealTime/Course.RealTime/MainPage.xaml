@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Course.RealTime"
+             xmlns:converters="clr-namespace:Course.RealTime.Converters;assembly=Course.RealTime"
+             xmlns:models="clr-namespace:Course.RealTime.Models;assembly=Course.RealTime"
+             x:DataType="local:MainPageViewModel"
+             x:Class="Course.RealTime.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ConnectedToColorConverter x:Key="ConnectedToColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid 
+        Margin="0,52,0,24"
+        RowDefinitions="Auto,*,Auto"
+        >
+       
+        <BoxView
+            Margin="8,0,0,0"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"
+            HeightRequest="30"
+            WidthRequest="30"
+            BackgroundColor="{Binding IsConnected, Converter={StaticResource ConnectedToColorConverter}}"
+            CornerRadius="15"
+            />
+        
+        <Label
+            Text="Chat"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            />
+        
+        
+        
+        <ListView
+            SeparatorVisibility="None"
+            HasUnevenRows="True"
+            ItemsSource="{Binding Messages}"
+            Grid.Row="1">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell
+                        x:DataType="models:SignalRMessage"
+                        >
+                        <Frame
+                            Margin="8">
+                            <Label Text="{Binding Text}"/>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+        
+        <StackLayout
+            Grid.Row="2"
+            >
+            <Entry
+                Text="{Binding NewMessage}"
+                Placeholder="Il tuo messaggio"
+                />
+            <Button
+                Command="{Binding SendMessage}"
+                Text="Invia"/>
+        </StackLayout>
+        
+        
+    </Grid>
+
+</ContentPage>
