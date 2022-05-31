@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:courseMap="clr-namespace:xam.course.example1.Features.CourseMap;assembly=xam.course.example1"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             x:DataType="courseMap:CourseMapPageViewModel"
+             x:Class="xam.course.example1.Features.CourseMap.CourseMapPage">
+   <Grid RowDefinitions="*,Auto">
+       
+       
+       <maps:Map
+           ItemsSource="{Binding Locations}"
+           x:Name="MyMap"
+           TrafficEnabled="True"
+           IsShowingUser="True"
+           MapType="Street"
+           >
+           
+           <maps:Map.Behaviors>
+               <behaviorsPack:EventToCommandBehavior
+                   EventName="MapClicked"
+                   Command="{Binding MapCommand}"
+                   EventArgsPropertyPath="Position"
+                   />
+           </maps:Map.Behaviors>
+           
+           <maps:Map.ItemTemplate>
+               <DataTemplate x:DataType="courseMap:Location">
+                   <maps:Pin
+                       Position="{Binding Position}"
+                       Label="{Binding Title}"
+                       />
+               </DataTemplate>
+           </maps:Map.ItemTemplate>
+           
+       </maps:Map>
+       
+       <Button
+           Margin="0,0,0,44"
+           Command="{Binding CloseCommand}"
+           Grid.Row="1" 
+           Text="Chiudi"/>
+   </Grid>
+</ContentPage>

@@ -10,6 +10,7 @@ using mjm.nethelpers.Extensions;
 using Serilog;
 using xam.course.core.Models;
 using xam.course.example1.Features.ChooseSize;
+using xam.course.example1.Features.CourseMap;
 using xam.course.example1.Features.Detail;
 using xam.course.example1.Services;
 using Xam.Zero.ViewModels;
@@ -92,6 +93,9 @@ namespace xam.course.example1.Features.Contacts
                 {
                     // if(Device.Idiom == TargetIdiom.Tablet)
                     //     return this.Push<TabletDetailPage>(); 
+
+
+                    return this.PushModal<CourseMapPage>();
                     
                     return this.ShowPopup<DetailPage>();
                 })

@@ -131,7 +131,7 @@
         <PackageReference Include="OneSignalSDK.Xamarin" Version="4.0.0" />
         <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
         <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\xam.course.example1\xam.course.example1.csproj">

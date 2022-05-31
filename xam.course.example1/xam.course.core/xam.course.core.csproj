@@ -9,5 +9,6 @@
       <PackageReference Include="LiteDB" Version="5.0.11" />
       <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
       <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
+      <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2401" />
     </ItemGroup>
 </Project>

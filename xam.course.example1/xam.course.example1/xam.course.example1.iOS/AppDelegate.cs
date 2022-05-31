@@ -34,6 +34,8 @@ namespace xam.course.example1.iOS
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             
+            Xamarin.FormsMaps.Init();
+            
             App.Container.Register<IDataReader,IosDatReader>(Reuse.Singleton);
             App.Container.Register<INativeViewFactory,IosNativeViewFactory>();
             
