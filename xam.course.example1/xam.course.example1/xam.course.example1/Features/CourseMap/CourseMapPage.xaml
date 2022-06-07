@@ -4,10 +4,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:courseMap="clr-namespace:xam.course.example1.Features.CourseMap;assembly=xam.course.example1"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:converters="clr-namespace:xam.course.example1.Converters;assembly=xam.course.example1"
              x:DataType="courseMap:CourseMapPageViewModel"
              x:Class="xam.course.example1.Features.CourseMap.CourseMapPage">
-   <Grid RowDefinitions="*,Auto">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:MapArgsToPositionConvert x:Key="MapArgsToPositionConvert"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <Grid RowDefinitions="*,Auto">
        
        
        <maps:Map
@@ -16,13 +25,14 @@
            TrafficEnabled="True"
            IsShowingUser="True"
            MapType="Street"
+           
            >
            
            <maps:Map.Behaviors>
-               <behaviorsPack:EventToCommandBehavior
+               <behaviors:EventToCommandBehavior
                    EventName="MapClicked"
-                   Command="{Binding MapCommand}"
-                   EventArgsPropertyPath="Position"
+                   Command="{Binding MapCommand}" 
+                   EventArgsConverter="{StaticResource MapArgsToPositionConvert}"
                    />
            </maps:Map.Behaviors>
            

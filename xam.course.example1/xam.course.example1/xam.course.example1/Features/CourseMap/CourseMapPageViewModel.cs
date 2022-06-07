@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xam.Zero.ViewModels;
 using Xam.Zero.ZCommand;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace xam.course.example1.Features.CourseMap
@@ -24,9 +25,14 @@ namespace xam.course.example1.Features.CourseMap
             this.MapCommand = ZeroCommand<Position>.On(this)
                 .WithExecute((o, context) =>
                 {
-                    var t = 5;
+                    var t = o;
                 })
                 .Build();
+
+            // this.MapCommand = new Command<Position>(position =>
+            // {
+            //     var t = position;
+            // });
         }
 
         public void AddLocation(Position ePosition)
